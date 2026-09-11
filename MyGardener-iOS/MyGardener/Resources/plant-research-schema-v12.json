@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 12,
+  "purpose": "MyGardener plant research contract: consumer relevance, calendar event semantics, regional pest relevance, Thrive and monitoring inputs.",
+  "principles": [
+    "Store biological response thresholds separately from geographic zone labels.",
+    "Do not infer precipitation requirements from irrigation demand.",
+    "Every active Thrive module carries its own confidence and evidence basis.",
+    "Missing evidence remains missing; inferred fallbacks must be marked and cannot create T5 Core.",
+    "Seasonal/protected suitability is orthogonal to T1-T5 year-round outdoor suitability.",
+    "A management option does not imply management is required; intervention changes class only when the climate constraint needs it.",
+    "Survival and phenological/production success are distinct outputs.",
+    "Calendar thermal-time values are event-specific and remain null when no defensible GDD/chill literature exists; static local calendar windows remain fallback priors.",
+    "Reference ET coefficients are optional; absence must fall back to conservative category/drought-tolerance estimates rather than fabricated precision."
+  ],
+  "thriveEnvelope": {
+    "cold": {
+      "damageMinF": "number|null",
+      "lethalLowF": "number|null",
+      "eventDurationHours": "number|null",
+      "confidence": "0..1|null"
+    },
+    "heat": {
+      "ahsHeatZoneMin": "number|null",
+      "ahsHeatZoneMax": "number|null",
+      "heatDays86GoodMax": "number|null",
+      "heatDays86FailMax": "number|null",
+      "days95GoodMax": "number|null",
+      "days95FailMax": "number|null",
+      "days100GoodMax": "number|null",
+      "days100FailMax": "number|null",
+      "warmestMonthMeanMaxGood": "number|null",
+      "warmestMonthMeanMaxFail": "number|null",
+      "confidence": "0..1|null"
+    },
+    "hotNight": {
+      "goodMaxF": "number|null",
+      "failF": "number|null",
+      "consecutiveDays": "number|null",
+      "confidence": "0..1|null",
+      "days70GoodMax": "number|null",
+      "days70FailMax": "number|null",
+      "days75GoodMax": "number|null",
+      "days75FailMax": "number|null",
+      "days80GoodMax": "number|null",
+      "days80FailMax": "number|null"
+    },
+    "water": {
+      "annualPrecipGoodMin": "number|null",
+      "annualPrecipGoodMax": "number|null",
+      "annualPrecipFailMin": "number|null",
+      "annualPrecipFailMax": "number|null",
+      "summerPrecipGoodMin": "number|null",
+      "summerPrecipFailMin": "number|null",
+      "vpdGoodMax": "number|null",
+      "vpdFail": "number|null",
+      "irrigationDependence": "low|moderate|high|null",
+      "confidence": "0..1|null"
+    },
+    "humidity": {
+      "goodMin": "number|null",
+      "goodMax": "number|null",
+      "failMin": "number|null",
+      "failMax": "number|null",
+      "confidence": "0..1|null"
+    },
+    "phenology": {
+      "chillHoursMin": "number|null",
+      "chillHoursMax": "number|null",
+      "chillHoursFailMin": "number|null",
+      "chillHoursFailMax": "number|null",
+      "frostFreeDaysGoodMin": "number|null",
+      "frostFreeDaysFailMin": "number|null",
+      "gdd50GoodMin": "number|null",
+      "gdd50GoodMax": "number|null",
+      "gdd50FailMin": "number|null",
+      "gdd50FailMax": "number|null",
+      "confidence": "0..1|null",
+      "criticality": "essential|performance|null"
+    },
+    "solar": {
+      "goodMax": "MJ/m2/day number|null",
+      "failMax": "MJ/m2/day number|null",
+      "confidence": "0..1|null"
+    },
+    "interactions": {
+      "heatVpd": {
+        "enabled": "boolean",
+        "strength": "0..1|null",
+        "weight": "number|null"
+      },
+      "heatHumidity": {
+        "enabled": "boolean",
+        "strength": "0..1|null",
+        "weight": "number|null"
+      },
+      "heatHotNight": {
+        "enabled": "boolean",
+        "strength": "0..1|null",
+        "weight": "number|null"
+      },
+      "warmWinterChill": {
+        "enabled": "boolean",
+        "strength": "0..1|null",
+        "weight": "number|null"
+      }
+    },
+    "management": {
+      "cold": "none|cover|mulch|move-indoors|greenhouse|impractical|null",
+      "heat": "none|shade|irrigation|shade-and-irrigation|impractical|null",
+      "water": "none|irrigation|impractical|null",
+      "light": "none|shade|filtered-light|full-sun|null",
+      "containerSuitable": "boolean|null",
+      "seasonalOutdoorSuitable": "boolean|null"
+    }
+  },
+  "thriveEvidence": {
+    "confidence": "0..1|null",
+    "parameterConfidence": {
+      "cold": "0..1|null",
+      "heat": "0..1|null",
+      "hotNight": "0..1|null",
+      "water": "0..1|null",
+      "humidity": "0..1|null",
+      "phenology": "0..1|null",
+      "solar": "0..1|null",
+      "interactions": "0..1|null"
+    },
+    "parameterBasisByModule": {
+      "cold": "published|observed|calibrated|inferred|unknown",
+      "heat": "published|observed|calibrated|inferred|unknown",
+      "hotNight": "published|observed|calibrated|inferred|unknown",
+      "water": "published|observed|calibrated|inferred|unknown",
+      "humidity": "published|observed|calibrated|inferred|unknown",
+      "phenology": "published|observed|calibrated|inferred|unknown",
+      "solar": "published|observed|calibrated|inferred|unknown",
+      "interactions": "published|observed|calibrated|inferred|unknown"
+    },
+    "sources": [
+      "string"
+    ],
+    "assumptions": [
+      "string"
+    ],
+    "unresolved": [
+      "string"
+    ],
+    "moduleApplicability": {
+      "cold": "required|relevant|not_applicable|unknown",
+      "heat": "required|relevant|not_applicable|unknown",
+      "hotNight": "required|relevant|not_applicable|unknown",
+      "water": "required|relevant|not_applicable|unknown",
+      "humidity": "required|relevant|not_applicable|unknown",
+      "phenology": "required|relevant|not_applicable|unknown",
+      "solar": "required|relevant|not_applicable|unknown"
+    }
+  },
+  "outputs": {
+    "T5": "Core - reliable strong long-term outdoor performance with ordinary care",
+    "T4": "Suitable - generally strong performance with minor limitations",
+    "T3": "Conditional - success normally requires a specific realistic recurring intervention",
+    "T2": "Marginal - persistent stress or substantial intervention; reliability is uncertain",
+    "T1": "Unsuitable - fundamental climate incompatibility for reliable year-round outdoor growth",
+    "S": "Seasonal/protected overlay; not a sixth suitability class",
+    "confidenceRule": "T5 requires high-quality cold and heat evidence plus at least one additional resolved climate-performance module."
+  },
+  "monitoringExtensions": {
+    "water": {
+      "referenceEtCoefficient": "number|null; explicit plant/crop coefficient relative to FAO ET0 when defensible"
+    },
+    "phenology": {
+      "thermalEvents": {
+        "event": "flowering|fruiting|harvest|directSow|transplantOutside",
+        "baseF": "number|null",
+        "gddStart": "number|null",
+        "gddEnd": "number|null",
+        "upperF": "number|null",
+        "requiresChillHours": "number|null"
+      }
+    },
+    "alerting": {
+      "coldDuration": "use thriveEnvelope.cold.eventDurationHours when evidence-supported",
+      "warmNightDuration": "use climate.hotNightConsecutiveDays / thriveEnvelope.hotNight.consecutiveDays when evidence-supported"
+    }
+  },
+  "phenology": {
+    "floweringCapable": "boolean|null",
+    "fruitingCapable": "boolean|null",
+    "fruitingTypicalInUserContext": "boolean|null",
+    "harvestRelevant": "boolean|null"
+  },
+  "care": {
+    "pests": [
+      {
+        "name": "string",
+        "risk": "low|moderate|high",
+        "season": "string|null",
+        "monitorFor": "string|null",
+        "regionalRelevance": "low|moderate|high|null",
+        "locationSpecific": "boolean|null",
+        "notes": "string|null"
+      }
+    ],
+    "diseases": [
+      {
+        "name": "string",
+        "risk": "low|moderate|high",
+        "season": "string|null",
+        "monitorFor": "string|null",
+        "regionalRelevance": "low|moderate|high|null",
+        "locationSpecific": "boolean|null",
+        "notes": "string|null"
+      }
+    ]
+  },
+  "calendarSemantics": {
+    "floweringCapable": "Biological ability to flower under suitable maturity/conditions; not a promise of annual flowering in the stored context.",
+    "fruitingCapable": "Biological ability to form fruit/seed under suitable conditions.",
+    "fruitingTypicalInUserContext": "Whether fruiting is reasonably expected for this stored specimen/culture/location.",
+    "harvestRelevant": "True only if harvest is meaningful to the gardener; ornamental seed capsules/cones/berries do not automatically create Harvest events."
+  }
+}
