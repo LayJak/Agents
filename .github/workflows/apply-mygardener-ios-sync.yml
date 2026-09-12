@@ -22,7 +22,7 @@ jobs:
           set -euo pipefail
           cat .ios-sync/part-* > /tmp/mygardener-ios.zip.b64
           base64 --decode /tmp/mygardener-ios.zip.b64 > /tmp/mygardener-ios.zip
-          echo "d62b39d3409be335c54faad9b83069b9ccd6638df1e799ae93f0682dc3fa0c75  /tmp/mygardener-ios.zip" | sha256sum -c -
+          echo "90bd1320dbd6752d3da72ca6311118d4f16dd4a899c2a16a285f471f87ab2246  /tmp/mygardener-ios.zip" | sha256sum -c -
           rm -rf /tmp/mygardener-ios
           mkdir -p /tmp/mygardener-ios
           unzip -q /tmp/mygardener-ios.zip -d /tmp/mygardener-ios
